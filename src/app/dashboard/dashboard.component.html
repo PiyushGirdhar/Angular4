@@ -1,48 +1,47 @@
-<div class="container-fluid">
-  <p class="text-center">List of the tasks:</p>                                                                                      
-  <div class="table-responsive">          
-  <table class="table">
-    <thead>
-      <tr>
-        <th>
-            <input [(ngModel)]="searchText" type="text" class="form-control table-search" placeholder="Identification">
-        </th>
-        <th>Task Name</th>
-        <th>Status</th>
-        <th>Owner</th>
-        <th class="text-center">Comment</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let task of tasks | filter : searchText | paginate: { itemsPerPage: 10, currentPage: p }">
-        <td>{{task.id}}</td>
-        <td>Enter {{task.frequency}} {{task.fundName | replace}} commentary</td>
-        <td>
-          <a href="" class="btn btn-xs btn-block" [ngClass]="task.status == 'Pending' ? 'btn-warning' : 'btn-success'">
-              {{task.status}}
-          </a>
-        </td>
-        <td>
-          <select class="js-example-basic-single" name="state">
-            <option value="AL">Alabama</option>
-            <option value="WY">Wyoming</option>
-          </select>
-        </td>
-        <td *ngIf="task.comment">
-          <i class="fa fa-comment" aria-hidden="true"></i>
-        </td>
-        <td *ngIf="!task.comment">
-          No comment
-        </td>
-        <td>
-          <a href="">
-            <i class="fa fa-edit fa-primary"></i>
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <pagination-controls (pageChange)="p = $event" class="text-right"></pagination-controls>
-  </div> <!--table-responsive-->
-</div> <!--.container-fluid-->
+<section class="dashboard-screen">
+  <div class="container-fluid">
+    <p class="text-center">List of the tasks:</p>                                                                                      
+    <div class="table-responsive">          
+    <table class="table">
+      <thead>
+        <tr>
+          <th>
+              <input [(ngModel)]="searchText" type="text" class="form-control table-search" placeholder="Identification">
+          </th>
+          <th>Task Name</th>
+          <th>Status</th>
+          <th>Owner</th>
+          <th class="text-center">Comment</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks | filter : searchText | paginate: { itemsPerPage: 10, currentPage: p }">
+          <td>{{task.id}}</td>
+          <td>Enter {{task.frequency}} {{task.fundName | replace}} commentary</td>
+          <td>
+            <a href="" class="btn btn-xs btn-block" [ngClass]="task.status == 'Pending' ? 'btn-warning' : 'btn-success'">
+                {{task.status}}
+            </a>
+          </td>
+          <td>
+            <input type="text" [(ngModel)]="task.owner" class="form-control edit-control" (change)="updateTask(task)">
+          </td>
+          <td *ngIf="task.comment">
+            <i class="fa fa-comment" aria-hidden="true"></i>
+          </td>
+          <td *ngIf="!task.comment">
+            No comment
+          </td>
+          <td>
+            <a [routerLink]="['/details', task.id]">
+              <i class="fa fa-edit fa-primary"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event" class="text-right"></pagination-controls>
+    </div> <!--table-responsive-->
+  </div> <!--.container-fluid-->
+</section>

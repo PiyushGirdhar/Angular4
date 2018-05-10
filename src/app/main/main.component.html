@@ -12,11 +12,9 @@
       <div class="col-md-12 pd0">
         <div class="background-primary main-tab">
           <ul class="nav navbar-nav">
-            <li class="active">
-              <a href="javascript:void(0)">Dashboard</a>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a routerLink='/'>Dashboard</a>
             </li>
-            <li>
-              <a href="javascript:void(0)">Details</a>
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a routerLink='/details'>Details</a>
             </li>
           </ul> <!--.nav-->
         </div> <!--.background-primary-->
@@ -26,6 +24,4 @@
 
 </section> <!--.main-section-->
 
-<section class="dashboard-screen">
-  <app-dashboard></app-dashboard>
-</section> <!--.dashboard-screen-->
+<router-outlet></router-outlet>

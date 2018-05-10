@@ -25,9 +25,19 @@ export class TaskService {
     return this.http.get(this.baseUrl + 'tasks', this.options);
   }
 
+  // Get TaskById
+  getTaskById(id) {
+    return this.http.get(this.baseUrl + 'tasks/' + id, this.options);
+  }
+
   // Get Owners
   getOwners() {
     return this.http.get(this.baseUrl + 'owners', this.options);
+  }
+
+  // Update Owners
+  updateTask(data) {
+    return this.http.patch(this.baseUrl + 'tasks/' + data.id, data, this.options);
   }
 
 }

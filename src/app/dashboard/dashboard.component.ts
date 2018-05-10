@@ -33,14 +33,19 @@ export class DashboardComponent {
   getOwners() {
     this.taskService.getOwners().subscribe(data => {
       this.owners = data.json();
-      console.log(this.owners);
     });
   }
 
   // Update Owner
-  updateOwner(name) {
-    console.log(name);
-    this.getOwners();
+  updateTask(task) {
+    if(task.owner == "") {
+      alert('Cannot be empty');
+    } else {
+      this.taskService.updateTask(task).subscribe(data => {
+        this.getTasks();
+
+      });
+    }
   }
- 
+
 }

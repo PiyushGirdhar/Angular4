@@ -1,5 +1,5 @@
 export class Task {
-    id:string;
+    id:number;
     fundName:string;
     owner:string;
     frequency:string;
