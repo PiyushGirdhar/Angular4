@@ -1,0 +1,58 @@
+/* GENERIC MAIN SECTION */
+.main-section .pd0 {
+    padding: 0;
+}
+.main-section .custom-fa {
+    position: relative;
+    top: -4px
+}
+.main-content {
+    padding: 35px 15px 25px 15px;
+}
+.main-section .background-primary {
+    background-color: #ddd;
+}
+.main-section h1 {
+    margin: 0;
+    font-size: 24px;
+}
+.main-section ul {
+    float: none;
+    margin-bottom: -2px;
+}
+.main-section ul li {
+    margin-right: 20px;
+}
+.main-section ul li a {
+    text-transform: uppercase;
+    color: #999;
+    font-size: 13px;
+    padding: 10px 5px;
+}
+.nav>li>a:focus, .nav>li>a:hover {
+    background-color: inherit;
+}
+.main-section ul .active a {
+    color: #000;
+    border-bottom: 3px solid #0080ff;
+}
+.main-tab {
+    padding: 0 15px;
+    border-bottom: 2px solid lightgrey;
+}
+
+/* DASHBOARD CSS */
+.dashboard-screen {
+    margin: 35px 0;
+}
+
+/* RESPONSIVE MAIN SECTION */
+@media (max-width: 767px) { 
+    .main-section ul{
+        margin-top: -1px;
+        padding: 0 15px;
+    }
+    .main-section ul li {
+        display: inline-block;
+    }
+}

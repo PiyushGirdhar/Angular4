@@ -1,0 +1,25 @@
+.table-search {
+    box-shadow: none;
+    border: 0;
+    padding-bottom: 0;
+    padding-top: 14px;
+}
+.fa-primary {
+    color: #ed1c23; 
+}
+.btn-xs {
+    border: 0;
+}
+.btn-warning {
+    background-color: #ed1c23;
+}
+.table th, .table td, .table .table-search {
+    text-align: center;
+}
+.edit-control {
+    text-align: center;
+    border: 0;
+    box-shadow: none;
+    color: #000;
+}
+
