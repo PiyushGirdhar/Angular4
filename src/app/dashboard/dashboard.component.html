@@ -1,17 +1,48 @@
-<section class="dashboard-screen">
+<!--Top Section-->
+<nav class="navbar navbar-inverse">
   <div class="container-fluid">
-    <p class="text-center">List of the tasks:</p>                                                                                      
+    <div class="row">
+      <div class="col-md-2 col-sm-3">
+        <div class="navbar-header">
+          <ul class="nav navbar-nav navbar-left">
+            <li>
+              <a class="navbar-brand" href="#">
+                <img class="img-responsive logo-img" src="../../assets/logo.jpg" alt="logo">
+              </a>  
+            </li>
+          </ul> <!--.nav-->
+        </div> <!--.navbar-header-->
+      </div> <!--.col-md-2-->
+      <div class="col-md-8 col-sm-7 pd0">
+        <div class="custom-search">
+          <input [(ngModel)]="searchText" type="text" class="form-control" 
+          placeholder="Search by id, status, owner, fund name, frequency"
+          (change)="checkSearchText(searchText)">
+        </div> <!--.custom-search-->
+      </div> <!--.col-md-8--> 
+      <div class="col-md-2 col-sm-2">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a ref="javascript:void(0)"><i class="fa fa-envelope-open-o" aria-hidden="true"></i></a></li>
+          <li><a ref="javascript:void(0)"><i class="fa fa-user-o" aria-hidden="true"></i></a></li>
+        </ul> <!--.nav-->
+      </div> <!--.col-md-2-->
+    </div> <!--.row-->
+  </div> <!--.container-fluid-->
+</nav> <!--.navbar-->
+
+<app-mid></app-mid>
+
+<section class="dashboard-screen">
+  <div class="container-fluid">                                                                                 
     <div class="table-responsive">          
     <table class="table">
       <thead>
         <tr>
-          <th>
-              <input [(ngModel)]="searchText" type="text" class="form-control table-search" placeholder="Identification">
-          </th>
+          <th>Identification</th>
           <th>Task Name</th>
           <th>Status</th>
           <th>Owner</th>
-          <th class="text-center">Comment</th>
+          <th>Comment</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -25,7 +56,11 @@
             </a>
           </td>
           <td>
-            <input type="text" [(ngModel)]="task.owner" class="form-control edit-control" (change)="updateTask(task)">
+            <select [(ngModel)]="task.owner" name="owner" class="form-control edit-control" (change)="updateTask(task)">
+              <option value="{{o.name}}" *ngFor="let o of owners">
+                {{o.name}}
+              </option>
+            </select>
           </td>
           <td *ngIf="task.comment">
             <i class="fa fa-comment" aria-hidden="true"></i>
@@ -34,7 +69,7 @@
             No comment
           </td>
           <td>
-            <a [routerLink]="['/details', task.id]">
+            <a href="javascript:void(0)">
               <i class="fa fa-edit fa-primary"></i>
             </a>
           </td>
@@ -45,3 +80,38 @@
     </div> <!--table-responsive-->
   </div> <!--.container-fluid-->
 </section>
+
+<section class="details-screen">
+
+  <!--Edit-->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+      </div> <!--.col-md-12-->
+    </div> <!--.row-->
+    <div class="row" *ngIf="taskData">
+      <div class="col-md-12">
+        <form>
+          <div class="row">
+            <div class="col-md-6">
+              <label for="email">Email address:</label>
+              <input type="text" class="form-control" name>
+            </div> <!--.col-md-6-->
+            <div class="col-md-6">
+              <label for="pwd">Password:</label>
+              <input type="password" class="form-control" id="pwd">
+            </div> <!--.col-md-6-->
+          </div> <!--.row-->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="text-right">
+                <button type="submit" class="btn btn-default">Submit</button>
+              </div>
+            </div> <!--.col-md-12-->
+          </div> <!--.row-->
+        </form>
+      </div> <!--.col-md-12-->
+    </div> <!--.row-->
+  </div> <!--.container-fluid-->
+
+</section> <!--.details-screen-->

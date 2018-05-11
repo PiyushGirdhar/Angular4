@@ -1,4 +1,4 @@
-/* GENERIC MAIN SECTION */
+/* GENERIC HEADER SECTION */
 .main-section .pd0 {
     padding: 0;
 }
@@ -40,8 +40,11 @@
     padding: 0 15px;
     border-bottom: 2px solid lightgrey;
 }
+.dashboard-btn:hover {
+    cursor: context-menu;
+}
 
-/* RESPONSIVE MAIN SECTION */
+/* RESPONSIVE HEADER SECTION */
 @media (max-width: 767px) { 
     .main-section ul{
         margin-top: -1px;

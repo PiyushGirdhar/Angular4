@@ -1,5 +1,5 @@
 import { TaskService } from './../service/task.service';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Task } from '../shared/task';
 import { Owner } from '../shared/owner';
 
@@ -14,6 +14,7 @@ export class DashboardComponent {
   p: number = 1;
   tasks: Task[];
   owners: Owner[];
+  taskData: any;
 
   constructor(
     private taskService: TaskService
@@ -38,14 +39,9 @@ export class DashboardComponent {
 
   // Update Owner
   updateTask(task) {
-    if(task.owner == "") {
-      alert('Cannot be empty');
-    } else {
-      this.taskService.updateTask(task).subscribe(data => {
-        this.getTasks();
-
-      });
-    }
+    this.taskService.updateTask(task).subscribe(data => {
+      this.getTasks();
+    });
   }
 
 }

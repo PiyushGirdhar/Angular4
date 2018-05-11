@@ -1,10 +1,10 @@
+<!--Header-Section-->
 <section class="main-section">
-
- <div class="container-fluid">
+  <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 pd0">
           <div class="main-content background-primary">
-            <h1>Dashboard Commentary 1.0 <i class="fa fa-sort-desc custom-fa" aria-hidden="true"></i></h1>
+            <h1>Dashboard Commentary 1.0</h1>
           </div> <!--.main-content-->
         </div> <!--.col-md-12-->
     </div> <!--.row-->
@@ -12,16 +12,11 @@
       <div class="col-md-12 pd0">
         <div class="background-primary main-tab">
           <ul class="nav navbar-nav">
-            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a routerLink='/'>Dashboard</a>
-            </li>
-            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"><a routerLink='/details'>Details</a>
+            <li class="active"><a href="javascript:void(0)" class="dashboard-btn">Dashboard</a>
             </li>
           </ul> <!--.nav-->
         </div> <!--.background-primary-->
       </div> <!--.col-md-12-->
     </div> <!--.row-->
   </div> <!--.container-fluid-->
-
 </section> <!--.main-section-->
-
-<router-outlet></router-outlet>
