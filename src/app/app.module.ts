@@ -2,10 +2,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { FormsModule }    from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }    from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /* External Modules */
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ToastrModule } from 'ngx-toastr';
 
 // Pipes
 import { FilterPipe } from './pipes/filter.pipe';
@@ -31,7 +33,10 @@ import { MidComponent } from './mid/mid.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot()
   ],
   providers: [TaskService],
   bootstrap: [AppComponent]

@@ -25,6 +25,21 @@ export class TaskService {
     return this.http.get(this.baseUrl + 'tasks', this.options);
   }
 
+  // Create Task
+  createTask(data) {
+    return this.http.post(this.baseUrl + 'tasks', data, this.options);
+  }
+
+  // Delete Task
+  deleteTask(id) {
+    return this.http.delete(this.baseUrl + 'tasks/' + id, this.options);
+  }
+
+  // Update Task
+  updateTaskSubmit(data) {
+    return this.http.patch(this.baseUrl + 'tasks/' + data.id, data, this.options);
+  }
+
   // Get TaskById
   getTaskById(id) {
     return this.http.get(this.baseUrl + 'tasks/' + id, this.options);
@@ -38,6 +53,16 @@ export class TaskService {
   // Update Owners
   updateTask(data) {
     return this.http.patch(this.baseUrl + 'tasks/' + data.id, data, this.options);
+  }
+
+  // Get Frequency
+  getFrequencies() {
+    return this.http.get(this.baseUrl + 'frequency', this.options);
+  }
+
+  // Get Fund
+  getFundNames() {
+    return this.http.get(this.baseUrl + 'funds', this.options);
   }
 
 }

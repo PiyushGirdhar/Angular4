@@ -1,144 +1,88 @@
 {
   "tasks": [
     {
-      "id": 13,
-      "fundName": "task task task task task",
-      "owner": "owner one",
-      "frequency": "quatrly",
-      "comment": "comment",
-      "status": "Pending"
-    },
-    {
-      "id": 14,
-      "fundName": "task",
-      "owner": "owner one",
-      "frequency": "quaterly",
-      "comment": "comment",
-      "status": "Completed"
-    },
-    {
-      "id": 15,
-      "fundName": "task",
-      "owner": "owner three",
-      "frequency": "quaterly",
-      "comment": "comment",
-      "status": "Pending"
-    },
-    {
       "id": 16,
-      "fundName": "task",
-      "owner": "owner two",
-      "frequency": "quaterly",
-      "comment": "comment",
-      "status": "Pending"
-    },
-    {
-      "id": 17,
-      "fundName": "task",
+      "fundName": "fund name five",
       "owner": "owner three",
-      "frequency": "quaterly",
-      "comment": "comment",
-      "status": "Completed"
-    },
-    {
-      "id": 18,
-      "fundName": "task",
-      "owner": "owner three",
-      "frequency": "quaterly",
-      "comment": "comment",
+      "frequency": "monthly",
+      "comment": "comment test 1",
       "status": "Completed"
     },
     {
       "id": 19,
-      "fundName": "task",
-      "owner": "owner three",
+      "fundName": "fund name one",
+      "owner": "owner one",
       "frequency": "quaterly",
-      "comment": "comment",
+      "comment": "test",
       "status": "Completed"
     },
     {
-      "id": 20,
-      "fundName": "task",
+      "id": 22,
+      "fundName": "fund name three",
+      "owner": "owner three",
+      "frequency": "half yearly",
+      "comment": "test",
+      "status": "Completed"
+    },
+    {
+      "id": 23,
+      "fundName": "fund name two",
       "owner": "owner three",
       "frequency": "quaterly",
       "comment": "",
       "status": "Pending"
     },
     {
-      "id": 21,
-      "fundName": "task",
-      "owner": "owner three",
-      "frequency": "quaterly",
-      "comment": "comment",
-      "status": "Pending"
-    },
-    {
-      "id": 22,
-      "fundName": "task",
-      "owner": "owner three",
-      "frequency": "quaterly",
-      "comment": "comment",
-      "status": "Pending"
-    },
-    {
-      "id": 23,
-      "fundName": "task",
-      "owner": "owner three",
-      "frequency": "quaterly",
-      "comment": "comment",
-      "status": "Completed"
-    },
-    {
       "id": 24,
-      "fundName": "task",
+      "fundName": "fund name two",
       "owner": "owner three",
       "frequency": "quaterly",
-      "comment": "comment",
+      "comment": "",
       "status": "Pending"
     },
     {
       "id": 25,
-      "fundName": "task",
+      "fundName": "fund name four",
       "owner": "owner three",
       "frequency": "quaterly",
-      "comment": "comment",
+      "comment": "",
       "status": "Pending"
     },
     {
       "id": 26,
-      "fundName": "task",
+      "fundName": "fund name four",
       "owner": "owner three",
       "frequency": "quaterly",
-      "comment": "comment",
-      "status": "Completed"
+      "comment": "",
+      "status": "Pending"
     },
     {
       "id": 27,
-      "fundName": "task",
+      "fundName": "fund name four",
       "owner": "owner two",
       "frequency": "quaterly",
-      "comment": "comment",
-      "status": "Completed"
+      "comment": "",
+      "status": "Pending"
     },
     {
       "id": 28,
-      "fundName": "task",
+      "fundName": "fund name four",
       "owner": "owner two",
-      "frequency": "quaterly",
-      "comment": "comment",
-      "status": "Completed"
+      "frequency": "monthly",
+      "comment": "",
+      "status": "Pending"
     },
     {
       "owner": "owner two",
-      "status": "completed",
-      "comment": "comment",
+      "status": "Pending",
+      "comment": "",
       "frequency": "test",
-      "fundName": "test",
+      "fundName": "fund name four",
       "id": 29
     },
     {
       "id": 30,
-      "fundName": "task",
+      "fundName": "fund name four",
       "owner": "owner two",
       "frequency": "quaterly",
       "comment": "",
@@ -146,23 +90,23 @@
     },
     {
       "id": 31,
-      "fundName": "task",
+      "fundName": "fund name four",
       "owner": "owner one",
       "frequency": "quaterly",
-      "comment": "comment",
+      "comment": "",
       "status": "Pending"
     },
     {
       "id": 32,
-      "fundName": "task",
+      "fundName": "fund name four",
       "owner": "owner one",
       "frequency": "quaterly",
-      "comment": "comment",
+      "comment": "",
       "status": "Pending"
     },
     {
       "id": 33,
-      "fundName": "task",
+      "fundName": "fund name three",
       "owner": "owner one",
       "frequency": "quaterly",
       "comment": "",
@@ -170,23 +114,23 @@
     },
     {
       "id": 34,
-      "fundName": "task",
+      "fundName": "fund name three",
       "owner": "owner one",
       "frequency": "quaterly",
-      "comment": "comment",
+      "comment": "",
       "status": "Pending"
     },
     {
       "id": 35,
-      "fundName": "task",
+      "fundName": "fund name three",
       "owner": "owner one",
       "frequency": "quaterly",
-      "comment": "comment",
+      "comment": "",
       "status": "Pending"
     },
     {
       "id": 36,
-      "fundName": "task",
+      "fundName": "fund name two",
       "owner": "owner one",
       "frequency": "quaterly",
       "comment": "",
@@ -194,19 +138,35 @@
     },
     {
       "id": 38,
-      "fundName": "task",
+      "fundName": "fund name two",
       "owner": "owner one",
       "frequency": "quaterly",
-      "comment": "comment",
+      "comment": "",
       "status": "Pending"
     },
     {
       "id": 39,
-      "fundName": "task",
+      "fundName": "fund name two",
       "owner": "owner one",
       "frequency": "quaterly",
-      "comment": "comment",
+      "comment": "",
       "status": "Pending"
+    },
+    {
+      "owner": "owner one",
+      "frequency": "half yearly",
+      "fundName": "fund name one",
+      "comment": "T",
+      "status": "Completed",
+      "id": 40
+    },
+    {
+      "owner": "owner two",
+      "frequency": "monthly",
+      "fundName": "fund name three",
+      "comment": "TE",
+      "status": "Completed",
+      "id": 41
     }
   ],
   "owners": [
@@ -224,6 +184,37 @@
     },
     {
       "name": "owner five"
+    }
+  ],
+  "funds": [
+    {
+      "name": "fund name one"
+    },
+    {
+      "name": "fund name two"
+    },
+    {
+      "name": "fund name three"
+    },
+    {
+      "name": "fund name four"
+    },
+    {
+      "name": "fund name five"
+    }
+  ],
+  "frequency": [
+    {
+      "name": "quaterly"
+    },
+    {
+      "name": "monthly"
+    },
+    {
+      "name": "half yearly"
+    },
+    {
+      "name": "full year"
     }
   ]
 }

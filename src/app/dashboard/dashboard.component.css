@@ -84,6 +84,9 @@
     padding-bottom: 0;
     padding-top: 14px;
 }
+.dashboard-screen .fa {
+    cursor: pointer;
+}
 .fa-primary {
     color: #ed1c23; 
 }
@@ -100,8 +103,12 @@
     text-align: center;
     box-shadow: none;
     color: #000;
-    border: 0;
     border-color: #ddd;
+}
+.dashboard-screen .edit-control {
+    max-width: 130px;
+    margin: 0 auto;
+    border: 0;
 }
 .edit-control:focus {
     border: 1px solid #ccc;
@@ -111,17 +118,17 @@
 .details-screen {
     margin: 35px 0;
 }
-form input {
+.details-screen form input, .details-screen form select {
     border: 0;
     border-radius: 0;
     box-shadow: none;
     margin-bottom: 15px;
     border-bottom: 1px solid #ccc;
 }
-form input:focus {
+.details-screen form input:focus, .details-screen form select:focus {
     border-color: #ed1c23;
 }
-form .btn {
+.details-screen form .btn {
     background-color: #ed1c23;
     border: 0;
     border-radius: 0;
