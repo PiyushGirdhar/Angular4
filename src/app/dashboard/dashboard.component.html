@@ -26,7 +26,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let task of tasks | filter : searchText | paginate: { itemsPerPage: 6, currentPage: pageNumber }">
+              <tr *ngFor="let task of tasks | filter : searchText | paginate: { itemsPerPage: 6, currentPage: p }">
                 <td>{{task.id}}</td>
                 <td>Enter {{task.frequency.name}} {{task.fundName.name | replace}} commentary</td>
                 <td>
@@ -38,8 +38,8 @@
                   </a>
                 </td>
                 <td>
-                    <select2 [options]="owners" [settings]="{ setting: value }"
-                    [(ngModel)]="task.owner" (onSelect)="updateTask($event,task)"></select2>
+                    <select2 [options]="owners" [settings]="{ setting: value, width: '100%' }"
+                    [(ngModel)]="task.owner.id" (onSelect)="updateTask($event,task)"></select2>
                 </td>
                 <td *ngIf="task.comment">
                   <i class="fa fa-comment" aria-hidden="true"></i>
@@ -80,32 +80,20 @@
             </div> <!--.col-md-6-->
             <div class="col-md-6">
               <label for="owner">Fund Name:</label>
-              <select required [(ngModel)]="editData.fundName" name="fundName" class="form-control"
-              placeholder="*Fund Name">
-                <option value="{{fund.name}}" *ngFor="let fund of fundName">
-                  {{fund.name}}
-                </option>
-              </select>
+              <select2 [options]="fundName" [settings]="{ setting: value }"
+              [(ngModel)]="editData.fundName.id" name="fundName"></select2>
             </div> <!--.col-md-6-->
           </div> <!--.row-->
           <div class="row">
             <div class="col-md-6">
               <label for="owner">Owner:</label>
-              <select required [(ngModel)]="editData.owner" name="owner" class="form-control"
-              placeholder="*Owner">
-                <option value="{{owner.name}}" *ngFor="let owner of owners">
-                  {{owner.name}}
-                </option>
-              </select>
+              <select2 [options]="owners" [settings]="{ setting: value }"
+              [(ngModel)]="editData.owner.id" name="owner"></select2>
             </div> <!--.col-md-6-->
             <div class="col-md-6">
               <label for="owner">Frequency:</label>
-              <select required [(ngModel)]="editData.frequency" name="frequency" class="form-control"
-              placeholder="*Frequency">
-                <option value="{{freq.name}}" *ngFor="let freq of frequency">
-                  {{freq.name}}
-                </option>
-              </select>
+              <select2 [options]="frequency" [settings]="{ setting: value }"
+              [(ngModel)]="editData.frequency.id" name="frequency" (onSelect)="updateFrequencyName($event)"></select2>
             </div> <!--.col-md-6-->
           </div> <!--.row-->
           <div class="row" *ngIf="showComment">
@@ -134,42 +122,28 @@
           <div class="row">
             <div class="col-md-6">
               <label for="owner">Fund Name:</label>
-              <select required name="fundName" class="form-control"
-               placeholder="*Fund Name" formControlName="fundName">
-                <option value="">Choose Fund Name for the task</option>
-                <option value="{{fund.name}}" *ngFor="let fund of fundName">
-                  {{fund.name}}
-                </option>
-              </select>
+              <select2 [options]="fundName" [settings]="{ setting: value, placeholder: 'Choose one from the dropdown' }"
+              formControlName="fundName">
+            </select2>
             </div> <!--.col-md-6-->
             <div class="col-md-6">
               <label for="owner">Owner:</label>
-              <select required name="owner" class="form-control"
-              placeholder="*Owner" formControlName="owner">
-                <option value="">Choose Owner for the task</option>
-                <option value="{{owner.id}}" *ngFor="let owner of owners">
-                  {{owner.text}}
-                </option>
-              </select>
+              <select2 [options]="owners" [settings]="{ setting: value, placeholder: 'Choose one from the dropdown' }"
+              formControlName="owner"></select2>
             </div> <!--.col-md-6-->
           </div> <!--.row-->
           <div class="row">
             <div class="col-md-6">
               <label for="owner">Frequency:</label>
-              <select required name="frequency" class="form-control"
-              placeholder="*Frequency" formControlName="frequency">
-                <option value="">Choose Frequency for the task</option>
-                <option value="{{freq.name}}" *ngFor="let freq of frequency">
-                  {{freq.name}}
-                </option>
-              </select>
+              <select2 [options]="frequency" [settings]="{ setting: value, placeholder: 'Choose one from the dropdown' }"
+              formControlName="frequency" (onSelect)="updateFrequencyName($event)"></select2>
             </div> <!--.col-md-6--> 
           </div> <!--.row-->
           <div class="row">
             <div class="col-md-12">
               <div class="text-right">
                 <button type="button" class="btn btn-default" (click)="goBack()">Cancel</button> |
-                <button [disabled]="!taskForm.valid" type="submit" class="btn btn-default">Add</button>
+                <button [disabled]="!setFrequencyName || !setOwnerName || !setFundName" type="submit" class="btn btn-default">Add</button>
               </div>
             </div> <!--.col-md-12-->
           </div> <!--.row-->

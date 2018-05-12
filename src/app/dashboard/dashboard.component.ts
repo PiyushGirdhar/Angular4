@@ -19,7 +19,7 @@ import { Utils } from './../shared/utils'
 export class DashboardComponent implements OnInit {
 
   // Initialising variables
-  pageNumber: number = 1;
+  p: number = 1;
   tasks: Array<Task>;
   owners: Array<Owner>;
   frequency: Array<Frequency>;
@@ -34,6 +34,7 @@ export class DashboardComponent implements OnInit {
   showCreate: boolean = false;
   hideGrid: boolean = false;
   sortToggle: boolean = false;
+  setFrequencyName: string;
   @Input() searchText: string;
 
   constructor(
@@ -77,13 +78,20 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  updateFrequencyName(name) {
+    this.setFrequencyName = name.text;
+  }
+
   // Update Task
   updateTaskSubmit(editData) {
     if(this.showComment) {
         this.constData = {
           id: editData.id,
           owner: editData.owner,
-          frequency: editData.frequency,
+          frequency: {
+            id: editData.frequency.id,
+            name: this.setFrequencyName,
+          },
           fundName: editData.fundName,
           comment: editData.comment,
           status: 'Completed'
@@ -92,15 +100,20 @@ export class DashboardComponent implements OnInit {
       this.constData = {
         id: editData.id,
         owner: editData.owner,
-        frequency: editData.frequency,
+        frequency: {
+          id: editData.frequency.id,
+          name: this.setFrequencyName,
+        },
         fundName: editData.fundName
       };
     }
+    console.log(this.constData);
     this.taskService.updateTaskSubmit(this.constData).subscribe(data => {
       this.toastr.success('Records were successfully updated!');
       setTimeout(() => {
         this.showEdit = false;
         this.hideGrid = false;
+        this.showComment = false;
         this.getTasks();
       }, 500);
     });
@@ -111,11 +124,15 @@ export class DashboardComponent implements OnInit {
     this.disableFormewTaskForm(); 
     const task = {
       owner: this.taskForm.get('owner').value,
-      frequency: this.taskForm.get('frequency').value,
+      frequency: {
+        id: this.taskForm.get('frequency').value,
+        name: this.setFrequencyName
+      },
       fundName: this.taskForm.get('fundName').value,
       comment: "",
       status: "Pending"
     };
+    console.log(task);
     this.taskService.createTask(task).subscribe(data => {
       this.toastr.success('Task was successfully created!');
       setTimeout(() => {
@@ -145,20 +162,22 @@ export class DashboardComponent implements OnInit {
   // Get Frequencies
   getFrequencies() {
     this.taskService.getFrequencies().subscribe(data => {
-      this.frequency = data.json();
+      const frequencyList = data.json();
+      this.frequency = this.util.sortSelectList(frequencyList);
     });
   }
 
   // Get Fund Names
   getFundNames() {
     this.taskService.getFundNames().subscribe(data => {
-      this.fundName = data.json();
+      const fundNameList = data.json();
+      this.fundName = this.util.sortSelectList(fundNameList);
     });
   }
 
   // Open Edit section and get the data
   openEdit(data) {
-      this.processing = this.showComment ? true : false;
+      this.processing = this.showComment ? false : true;
       this.hideGrid = true;
       this.showEdit = true;
       this.editData = data;

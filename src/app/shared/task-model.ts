@@ -4,7 +4,10 @@ export class Task {
         id:number,
         name:string
     };
-    owner:string;
+    owner:{
+        id:number,
+        name:string
+    };
     frequency:{
         id:number,
         name:string

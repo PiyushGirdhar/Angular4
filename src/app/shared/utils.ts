@@ -8,15 +8,15 @@ export class Utils {
     }
 
     sortSelectList(obj) {
-        const ownerSelectList = [];
-        for (const ownerObj of obj) {
+        const selectList = [];
+        for (const selectObj of obj) {
             const optionObj = {
-              id : ownerObj.id,
-              text: ownerObj.name
+              id : selectObj.id,
+              text: selectObj.name
             };
-            ownerSelectList.push(optionObj);
+            selectList.push(optionObj);
         }
-        return ownerSelectList;
+        return selectList;
     }
 
 }
