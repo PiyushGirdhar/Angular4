@@ -1,4 +1,80 @@
 /* GENERIC CSS */
-* {
+p, h1, h2, h3, h4, h5, h6, span, tr, td, th, div {
     font-family: 'Roboto', sans-serif;
+}
+
+/* Top Section */
+.pd0 {
+    padding: 0;
+}
+.logo-img {
+    max-width: 31px;
+}
+.custom-fa {
+    position: relative;
+    top: -1px
+}
+.custom-search {
+    text-align: center;
+    max-width: 60%;
+    margin: 0 auto;
+}
+.custom-search .form-control {
+    height: 25px;
+    margin: 7px 0;
+    padding: 0px 12px;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* Overriding Bootstrap default's */
+.navbar {
+    margin-bottom: 0;
+    min-height: 38px;
+}
+.navbar-brand {
+    height: 38px;
+    padding: 4px 0 0 15px !important;
+}
+.navbar-inverse {
+    border: 0;
+    background-color: #000;
+}
+.navbar-inverse a {
+    font-size: 13px;
+    color: #ddd;
+}
+.navbar-inverse .fa {
+    font-size: 14px;
+}
+.navbar-right a {
+    padding: 4px 8px;
+}
+@media (min-width: 768px) {
+    .navbar {
+        border-radius: 0;
+    }
+    .navbar-nav>li>a {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+}
+
+/* Responsice navbar css */
+@media (max-width: 991px) { 
+    .custom-search {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+}
+@media (max-width: 767px) { 
+    .navbar-left {
+        text-align: right;
+    }
+    .navbar-right {
+        text-align: center;
+    }
+    .navbar-right li {
+        display: inline-block;
+    }
 }

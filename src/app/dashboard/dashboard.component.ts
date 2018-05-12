@@ -17,19 +17,21 @@ export class DashboardComponent {
 
   // Initialising variables
   p: number = 1;
-  tasks: Task[];
-  owners: Owner[];
-  frequency: Frequency[];
-  fundName: Fund[];
+  tasks: Array<Task>;
+  owners: Array<Owner>;
+  frequency: Array<Frequency>;
+  fundName: Array<Fund>;
   taskData: any;
   constData: any;
   form: any;
-  editData: Task[];
+  editData: Array<Task>;
   showEdit: boolean = false;
   processing: boolean = false;
   showComment: boolean = false;
   showCreate: boolean = false;
   hideGrid: boolean = false;
+  sortToggle: boolean = false;
+  @Input() searchText: string;
 
   constructor(
     private taskService: TaskService,
@@ -111,14 +113,13 @@ export class DashboardComponent {
   onTaskSubmit() {
     this.disableFormewTaskForm(); // Lock the form
     // Get the task details
-    let task = {
+    const task = {
       owner: this.form.get('owner').value,
       frequency: this.form.get('frequency').value,
       fundName: this.form.get('fundName').value,
       comment: "",
       status: "Pending"
     };
-    console.log('task', task);
     // Call the service to create the task
     this.taskService.createTask(task).subscribe(data => {
       this.toastr.success('Task was successfully created!');
@@ -135,14 +136,23 @@ export class DashboardComponent {
   // Get owners
   getOwners() {
     this.taskService.getOwners().subscribe(data => {
-      this.owners = data.json();
+      const ownersList = data.json();
+      const ownerSelectList = [];
+      for (const ownerObj of ownersList) {
+        const optionObj = {
+          id : ownerObj.id,
+          text: ownerObj.name
+        };
+        ownerSelectList.push(optionObj);
+      }
+      this.owners = ownerSelectList;
     });
   }
 
   // Update Owner
-  updateTask(task) {
+  updateTask(event, task) {
+    console.log('event, task', event, task);
     this.taskService.updateTask(task).subscribe(data => {
-      this.getTasks();
       this.toastr.success('Record was successfully updated!');
     });
   }
@@ -217,6 +227,20 @@ export class DashboardComponent {
     } else {
       this.processing = true;
     }
+  }
+
+  // Toggle data
+  toggleData(): void {
+    this.sortToggle = !this.sortToggle;
+    this.tasks = this.sortList(this.tasks, 'id', this.sortToggle);
+
+  }
+    
+  sortList(list, sortKey, sortInDecending): Array<any> {
+    list.sort((a, b) => {
+      return sortInDecending ? (b[sortKey] - a[sortKey]) : (a[sortKey] -b[sortKey]);
+     });
+     return list;
   }
 
 }

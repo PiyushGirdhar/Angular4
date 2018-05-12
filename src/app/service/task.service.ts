@@ -9,7 +9,9 @@ export class TaskService {
 
   constructor(
     private http: Http
-  ) { }
+  ) {
+      this.createHeaders();
+   }
 
   createHeaders() {
     // Headers configuration options

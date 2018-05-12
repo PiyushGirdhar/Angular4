@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 /* External Modules */
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToastrModule } from 'ngx-toastr';
+import {Select2Component} from 'angular-select2-component';
 
 // Pipes
 import { FilterPipe } from './pipes/filter.pipe';
@@ -27,7 +28,8 @@ import { MidComponent } from './mid/mid.component';
     DashboardComponent,
     FilterPipe,
     ReplacePipe,
-    MidComponent
+    MidComponent,
+    Select2Component
   ],
   imports: [
     BrowserModule,

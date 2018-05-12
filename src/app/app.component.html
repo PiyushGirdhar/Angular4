@@ -1,1 +1,34 @@
-<app-dashboard></app-dashboard>
+<!--Top Section-->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 col-sm-3">
+                <div class="navbar-header">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                    <a class="navbar-brand" href="#">
+                        <img class="img-responsive logo-img" src="../../assets/logo.jpg" alt="logo">
+                    </a>  
+                    </li>
+                </ul> <!--.nav-->
+                </div> <!--.navbar-header-->
+            </div> <!--.col-md-2-->
+            <div class="col-md-8 col-sm-7 pd0">
+                <div class="custom-search">
+                <input [(ngModel)]="searchText" type="text" class="form-control" 
+                placeholder="Search by id, status, owner, fund name, frequency">
+                </div> <!--.custom-search-->
+            </div> <!--.col-md-8--> 
+            <div class="col-md-2 col-sm-2">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a ref="javascript:void(0)"><i class="fa fa-envelope-open-o" aria-hidden="true"></i></a></li>
+                    <li><a ref="javascript:void(0)"><i class="fa fa-user-o" aria-hidden="true"></i></a></li>
+                </ul> <!--.nav-->
+            </div> <!--.col-md-2-->
+        </div> <!--.row-->
+    </div> <!--.container-fluid-->
+</nav> <!--.navbar-->
+  
+<app-mid></app-mid>
+  
+<app-dashboard [searchText]="searchText"></app-dashboard>

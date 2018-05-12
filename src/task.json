@@ -4,16 +4,8 @@
       "id": 16,
       "fundName": "fund name five",
       "owner": "owner three",
-      "frequency": "monthly",
+      "frequency": "frequency two",
       "comment": "comment test 1",
-      "status": "Completed"
-    },
-    {
-      "id": 19,
-      "fundName": "fund name one",
-      "owner": "owner one",
-      "frequency": "quaterly",
-      "comment": "test",
       "status": "Completed"
     },
     {
@@ -23,14 +15,6 @@
       "frequency": "half yearly",
       "comment": "test",
       "status": "Completed"
-    },
-    {
-      "id": 23,
-      "fundName": "fund name two",
-      "owner": "owner three",
-      "frequency": "quaterly",
-      "comment": "",
-      "status": "Pending"
     },
     {
       "id": 24,
@@ -167,54 +151,70 @@
       "comment": "TE",
       "status": "Completed",
       "id": 41
+    },
+    {
+      "owner": "owner one",
+      "frequency": "frequency one",
+      "fundName": "funds one",
+      "comment": "test",
+      "status": "Completed",
+      "id": 42
     }
   ],
   "owners": [
     {
+      "id": 1,
       "name": "owner one"
     },
     {
+      "id": 2,
       "name": "owner two"
     },
     {
+      "id": 3,
       "name": "owner three"
     },
     {
+      "id": 4,
       "name": "owner four"
     },
     {
+      "id": 5,
       "name": "owner five"
     }
   ],
   "funds": [
     {
-      "name": "fund name one"
+      "name": "funds one"
     },
     {
-      "name": "fund name two"
+      "name": "funds two"
     },
     {
-      "name": "fund name three"
+      "name": "funds three"
     },
     {
-      "name": "fund name four"
+      "name": "funds four"
     },
     {
-      "name": "fund name five"
+      "name": "funds five"
     }
   ],
   "frequency": [
     {
-      "name": "quaterly"
+      "name": "frequency one"
     },
     {
-      "name": "monthly"
+      "name": "frequency two"
     },
     {
-      "name": "half yearly"
+      "name": "frequency three"
     },
     {
-      "name": "full year"
+      "name": "frequency four"
+    },
+    {
+      "name": "frequency five"
     }
   ]
 }

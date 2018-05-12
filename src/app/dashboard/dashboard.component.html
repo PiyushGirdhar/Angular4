@@ -1,41 +1,9 @@
-<!--Top Section-->
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-2 col-sm-3">
-        <div class="navbar-header">
-          <ul class="nav navbar-nav navbar-left">
-            <li>
-              <a class="navbar-brand" href="#">
-                <img class="img-responsive logo-img" src="../../assets/logo.jpg" alt="logo">
-              </a>  
-            </li>
-          </ul> <!--.nav-->
-        </div> <!--.navbar-header-->
-      </div> <!--.col-md-2-->
-      <div class="col-md-8 col-sm-7 pd0">
-        <div class="custom-search">
-          <input [(ngModel)]="searchText" type="text" class="form-control" 
-          placeholder="Search by id, status, owner, fund name, frequency">
-        </div> <!--.custom-search-->
-      </div> <!--.col-md-8--> 
-      <div class="col-md-2 col-sm-2">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a ref="javascript:void(0)"><i class="fa fa-envelope-open-o" aria-hidden="true"></i></a></li>
-          <li><a ref="javascript:void(0)"><i class="fa fa-user-o" aria-hidden="true"></i></a></li>
-        </ul> <!--.nav-->
-      </div> <!--.col-md-2-->
-    </div> <!--.row-->
-  </div> <!--.container-fluid-->
-</nav> <!--.navbar-->
-
-<app-mid></app-mid>
-
 <section class="dashboard-screen">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
         <p class="text-right">
+          {{searchText}}
           <a (click)="openCreate()" class="btn btn-xs btn-warning">Add Task <i class="fa fa-plus"></i></a>
         </p>
       </div> <!--.col-md-12-->
@@ -46,7 +14,11 @@
           <table class="table">
             <thead>
               <tr>
-                <th>Identification</th>
+                <th>Identification 
+                  <a (click)="toggleData()">
+                    <i class="fa fa-sort-desc"></i>
+                  </a>
+                </th>
                 <th>Task Name</th>
                 <th>Status</th>
                 <th>Owner</th>
@@ -67,11 +39,13 @@
                   </a>
                 </td>
                 <td>
-                  <select [(ngModel)]="task.owner" name="owner" class="form-control edit-control" (change)="updateTask(task)">
+                    <select2 [options]="owners" [settings]="{ setting: value }"
+                    [(ngModel)]="task.owner" (onSelect)="updateTask($event,task)"></select2>
+                  <!-- <select [(ngModel)]="task.owner" name="owner" class="form-control edit-control" (change)="updateTask(task)">
                     <option value="{{o.name}}" *ngFor="let o of owners">
                       {{o.name}}
                     </option>
-                  </select>
+                  </select> -->
                 </td>
                 <td *ngIf="task.comment">
                   <i class="fa fa-comment" aria-hidden="true"></i>
@@ -195,7 +169,7 @@
                   {{o.name}}
                 </option>
               </select>
-            </div> <!--.col-md-6-->
+            </div> <!--.col-md-6--> 
           </div> <!--.row-->
           <div class="row">
             <div class="col-md-12">
