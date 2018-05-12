@@ -6,6 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ReplacePipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
+    if (!value) return;
     return value.split(' ').join('_');
   }
 

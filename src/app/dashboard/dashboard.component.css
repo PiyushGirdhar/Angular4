@@ -58,4 +58,15 @@
     border-radius: 0;
     color: #fff;
 }
-
+.fa-sort-desc, .fa-sort-asc {
+    position: relative;
+}
+.fa-sort-desc {
+    top: -2px;
+}
+.fa-sort-asc {
+    top: 3px;
+}
+span {
+    width: 150px !important;
+}

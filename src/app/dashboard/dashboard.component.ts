@@ -1,29 +1,32 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TaskService } from './../service/task.service';
-import { Frequency } from './../shared/frequency';
-import { Task } from './../shared/task';
-import { Owner } from '../shared/owner';
-import { Fund } from '../shared/fund';
+import { Frequency } from './../shared/frequency-model';
+import { Task } from './../shared/task-model';
+import { Owner } from '../shared/owner-model';
+import { Fund } from '../shared/fund-model';
 import { ToastrService } from 'ngx-toastr';
-// For Reactive forms
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Utils } from './../shared/utils'
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  providers: [
+    Utils
+  ]
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
 
   // Initialising variables
-  p: number = 1;
+  pageNumber: number = 1;
   tasks: Array<Task>;
   owners: Array<Owner>;
   frequency: Array<Frequency>;
   fundName: Array<Fund>;
   taskData: any;
   constData: any;
-  form: any;
+  taskForm: any;
   editData: Array<Task>;
   showEdit: boolean = false;
   processing: boolean = false;
@@ -36,16 +39,14 @@ export class DashboardComponent {
   constructor(
     private taskService: TaskService,
     private toastr: ToastrService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private util: Utils
   ) {
-    this.getTasks();
-    this.getOwners();
   }
 
   // Function to create new task form
   createNewTaskForm() {
-    // Create form with formbuilder
-    this.form = this.formBuilder.group({
+    this.taskForm = this.formBuilder.group({
       fundName: [''],
       owner: [''],
       frequency: ['']
@@ -54,10 +55,9 @@ export class DashboardComponent {
 
   // Disable new task form
   disableFormewTaskForm() {
-    // Disable fields
-    this.form.get('owner').disable(); 
-    this.form.get('frequency').disable();
-    this.form.get('fundName').disable(); 
+    this.taskForm.get('owner').disable(); 
+    this.taskForm.get('frequency').disable();
+    this.taskForm.get('fundName').disable(); 
   }
 
   // Get commentary/task
@@ -69,7 +69,6 @@ export class DashboardComponent {
 
   // Delete Task
   deleteTask(id) {
-    // Check to confirm if the user wants to delete the record
     if(confirm('Are you sure, you want to delete this record?')) {
       this.taskService.deleteTask(id).subscribe(data => {
         this.toastr.success('Record was successfully deleted!');
@@ -80,7 +79,6 @@ export class DashboardComponent {
 
   // Update Task
   updateTaskSubmit(editData) {
-    // Check if the comment is visible then only add the comment and change the status to completed
     if(this.showComment) {
         this.constData = {
           id: editData.id,
@@ -98,38 +96,34 @@ export class DashboardComponent {
         fundName: editData.fundName
       };
     }
-    // Update Records by calling the service
     this.taskService.updateTaskSubmit(this.constData).subscribe(data => {
       this.toastr.success('Records were successfully updated!');
       setTimeout(() => {
         this.showEdit = false;
         this.hideGrid = false;
         this.getTasks();
-      }, 2000);
+      }, 500);
     });
   }
 
-  // Create Task
+  // Create Task 
   onTaskSubmit() {
-    this.disableFormewTaskForm(); // Lock the form
-    // Get the task details
+    this.disableFormewTaskForm(); 
     const task = {
-      owner: this.form.get('owner').value,
-      frequency: this.form.get('frequency').value,
-      fundName: this.form.get('fundName').value,
+      owner: this.taskForm.get('owner').value,
+      frequency: this.taskForm.get('frequency').value,
+      fundName: this.taskForm.get('fundName').value,
       comment: "",
       status: "Pending"
     };
-    // Call the service to create the task
     this.taskService.createTask(task).subscribe(data => {
       this.toastr.success('Task was successfully created!');
-      // Show updated
       setTimeout(() => {
         this.showCreate = false;
         this.showEdit = false;
         this.hideGrid = false;
         this.getTasks();
-      }, 2000);
+      }, 500);
     });
   }
 
@@ -137,21 +131,12 @@ export class DashboardComponent {
   getOwners() {
     this.taskService.getOwners().subscribe(data => {
       const ownersList = data.json();
-      const ownerSelectList = [];
-      for (const ownerObj of ownersList) {
-        const optionObj = {
-          id : ownerObj.id,
-          text: ownerObj.name
-        };
-        ownerSelectList.push(optionObj);
-      }
-      this.owners = ownerSelectList;
+      this.owners = this.util.sortSelectList(ownersList);
     });
   }
 
   // Update Owner
   updateTask(event, task) {
-    console.log('event, task', event, task);
     this.taskService.updateTask(task).subscribe(data => {
       this.toastr.success('Record was successfully updated!');
     });
@@ -171,46 +156,35 @@ export class DashboardComponent {
     });
   }
 
-  // Open Edit section
+  // Open Edit section and get the data
   openEdit(data) {
-      // Check if the comment is visible then set the processing to false else true
-      if(this.showComment) {
-        this.processing = false;
-      } else {
-        this.processing = true;
-      }
-      // Show Edit section
+      this.processing = this.showComment ? true : false;
       this.hideGrid = true;
       this.showEdit = true;
-      // Get the data from the api
       this.editData = data;
-      // Get the records from the api
       this.getFrequencies();
       this.getFundNames();
   }
 
-  // Open Create section
+  // Open Create section, get the data and create the form
   openCreate() {
     this.showEdit = false;
     this.hideGrid = true;
     this.showCreate = true;
-    // Get the records from the api
     this.getFrequencies();
     this.getFundNames();  
-    // Create Task form using formbuilder
     this.createNewTaskForm();
   }
 
-  // Go Back
+  // Go Back to grid
   goBack() {
     this.toastr.error('Record was not updated!');
-    // Show grid and hide other sections
     setTimeout(() => {
       this.showEdit = false;
       this.showCreate = false;
       this.showComment = false;
       this.hideGrid = false;
-    }, 2000);
+    }, 500);
   }
 
   // Check comment processing status
@@ -221,26 +195,17 @@ export class DashboardComponent {
 
   // Check Comment's processing status
   updatePending(comment) {
-    // Check if the comment is empty then set the processing to false else true
-    if(comment == "") {
-      this.processing = false;
-    } else {
-      this.processing = true;
-    }
+    this.processing = comment === "" ? false : true;
   }
 
   // Toggle data
   toggleData(): void {
     this.sortToggle = !this.sortToggle;
-    this.tasks = this.sortList(this.tasks, 'id', this.sortToggle);
-
-  }
-    
-  sortList(list, sortKey, sortInDecending): Array<any> {
-    list.sort((a, b) => {
-      return sortInDecending ? (b[sortKey] - a[sortKey]) : (a[sortKey] -b[sortKey]);
-     });
-     return list;
+    this.tasks = this.util.sortList(this.tasks, 'id', this.sortToggle);
   }
 
+  ngOnInit() {
+    this.getTasks();
+    this.getOwners();
+  }
 }

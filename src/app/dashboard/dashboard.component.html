@@ -3,7 +3,6 @@
     <div class="row">
       <div class="col-md-12">
         <p class="text-right">
-          {{searchText}}
           <a (click)="openCreate()" class="btn btn-xs btn-warning">Add Task <i class="fa fa-plus"></i></a>
         </p>
       </div> <!--.col-md-12-->
@@ -16,7 +15,7 @@
               <tr>
                 <th>Identification 
                   <a (click)="toggleData()">
-                    <i class="fa fa-sort-desc"></i>
+                    <i class="fa fa-primary" [ngClass]="sortToggle ? 'fa-sort-asc' : 'fa-sort-desc'"></i>
                   </a>
                 </th>
                 <th>Task Name</th>
@@ -27,9 +26,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let task of tasks | filter : searchText | paginate: { itemsPerPage: 6, currentPage: p }">
+              <tr *ngFor="let task of tasks | filter : searchText | paginate: { itemsPerPage: 6, currentPage: pageNumber }">
                 <td>{{task.id}}</td>
-                <td>Enter {{task.frequency}} {{task.fundName | replace}} commentary</td>
+                <td>Enter {{task.frequency.name}} {{task.fundName.name | replace}} commentary</td>
                 <td>
                   <a (click)="openEdit(task);isComment()" *ngIf="task.status == 'Pending'" class="btn btn-xs btn-block btn-warning">
                       {{task.status}}
@@ -41,11 +40,6 @@
                 <td>
                     <select2 [options]="owners" [settings]="{ setting: value }"
                     [(ngModel)]="task.owner" (onSelect)="updateTask($event,task)"></select2>
-                  <!-- <select [(ngModel)]="task.owner" name="owner" class="form-control edit-control" (change)="updateTask(task)">
-                    <option value="{{o.name}}" *ngFor="let o of owners">
-                      {{o.name}}
-                    </option>
-                  </select> -->
                 </td>
                 <td *ngIf="task.comment">
                   <i class="fa fa-comment" aria-hidden="true"></i>
@@ -88,8 +82,8 @@
               <label for="owner">Fund Name:</label>
               <select required [(ngModel)]="editData.fundName" name="fundName" class="form-control"
               placeholder="*Fund Name">
-                <option value="{{o.name}}" *ngFor="let o of fundName">
-                  {{o.name}}
+                <option value="{{fund.name}}" *ngFor="let fund of fundName">
+                  {{fund.name}}
                 </option>
               </select>
             </div> <!--.col-md-6-->
@@ -99,8 +93,8 @@
               <label for="owner">Owner:</label>
               <select required [(ngModel)]="editData.owner" name="owner" class="form-control"
               placeholder="*Owner">
-                <option value="{{o.name}}" *ngFor="let o of owners">
-                  {{o.name}}
+                <option value="{{owner.name}}" *ngFor="let owner of owners">
+                  {{owner.name}}
                 </option>
               </select>
             </div> <!--.col-md-6-->
@@ -108,8 +102,8 @@
               <label for="owner">Frequency:</label>
               <select required [(ngModel)]="editData.frequency" name="frequency" class="form-control"
               placeholder="*Frequency">
-                <option value="{{o.name}}" *ngFor="let o of frequency">
-                  {{o.name}}
+                <option value="{{freq.name}}" *ngFor="let freq of frequency">
+                  {{freq.name}}
                 </option>
               </select>
             </div> <!--.col-md-6-->
@@ -136,15 +130,15 @@
     <!--Create-->
     <div class="row" *ngIf="showCreate">
       <div class="col-md-12">
-        <form [formGroup]="form" name="createForm" (submit)="onTaskSubmit()">
+        <form [formGroup]="taskForm" name="createForm" (submit)="onTaskSubmit()">
           <div class="row">
             <div class="col-md-6">
               <label for="owner">Fund Name:</label>
               <select required name="fundName" class="form-control"
                placeholder="*Fund Name" formControlName="fundName">
                 <option value="">Choose Fund Name for the task</option>
-                <option value="{{o.name}}" *ngFor="let o of fundName">
-                  {{o.name}}
+                <option value="{{fund.name}}" *ngFor="let fund of fundName">
+                  {{fund.name}}
                 </option>
               </select>
             </div> <!--.col-md-6-->
@@ -153,8 +147,8 @@
               <select required name="owner" class="form-control"
               placeholder="*Owner" formControlName="owner">
                 <option value="">Choose Owner for the task</option>
-                <option value="{{o.name}}" *ngFor="let o of owners">
-                  {{o.name}}
+                <option value="{{owner.id}}" *ngFor="let owner of owners">
+                  {{owner.text}}
                 </option>
               </select>
             </div> <!--.col-md-6-->
@@ -165,8 +159,8 @@
               <select required name="frequency" class="form-control"
               placeholder="*Frequency" formControlName="frequency">
                 <option value="">Choose Frequency for the task</option>
-                <option value="{{o.name}}" *ngFor="let o of frequency">
-                  {{o.name}}
+                <option value="{{freq.name}}" *ngFor="let freq of frequency">
+                  {{freq.name}}
                 </option>
               </select>
             </div> <!--.col-md-6--> 
@@ -175,7 +169,7 @@
             <div class="col-md-12">
               <div class="text-right">
                 <button type="button" class="btn btn-default" (click)="goBack()">Cancel</button> |
-                <button [disabled]="!form.valid" type="submit" class="btn btn-default">Add</button>
+                <button [disabled]="!taskForm.valid" type="submit" class="btn btn-default">Add</button>
               </div>
             </div> <!--.col-md-12-->
           </div> <!--.row-->

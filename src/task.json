@@ -2,160 +2,265 @@
   "tasks": [
     {
       "id": 16,
-      "fundName": "fund name five",
-      "owner": "owner three",
-      "frequency": "frequency two",
+      "fundName": {
+        "id": 1,
+        "name": "funds one"
+      },
+      "owner": "1",
+      "frequency": {
+        "id": 1,
+        "name": "frequency one"
+      },
       "comment": "comment test 1",
       "status": "Completed"
     },
     {
       "id": 22,
-      "fundName": "fund name three",
-      "owner": "owner three",
-      "frequency": "half yearly",
+      "fundName": {
+        "id": 1,
+        "name": "funds one"
+      },
+      "owner": "3",
+      "frequency": {
+        "id": 1,
+        "name": "frequency one"
+      },
       "comment": "test",
       "status": "Completed"
     },
     {
       "id": 24,
-      "fundName": "fund name two",
-      "owner": "owner three",
-      "frequency": "quaterly",
+      "fundName": {
+        "id": 1,
+        "name": "funds one"
+      },
+      "owner": "3",
+      "frequency": {
+        "id": 1,
+        "name": "frequency one"
+      },
       "comment": "",
       "status": "Pending"
     },
     {
       "id": 25,
-      "fundName": "fund name four",
-      "owner": "owner three",
-      "frequency": "quaterly",
+      "fundName": {
+        "id": 1,
+        "name": "funds one"
+      },
+      "owner": "5",
+      "frequency": {
+        "id": 1,
+        "name": "frequency one"
+      },
       "comment": "",
       "status": "Pending"
     },
     {
       "id": 26,
-      "fundName": "fund name four",
-      "owner": "owner three",
-      "frequency": "quaterly",
-      "comment": "",
-      "status": "Pending"
-    },
-    {
-      "id": 27,
-      "fundName": "fund name four",
-      "owner": "owner two",
-      "frequency": "quaterly",
+      "fundName": {
+        "id": 1,
+        "name": "funds one"
+      },
+      "owner": "1",
+      "frequency": {
+        "id": 1,
+        "name": "frequency one"
+      },
       "comment": "",
       "status": "Pending"
     },
     {
       "id": 28,
-      "fundName": "fund name four",
-      "owner": "owner two",
-      "frequency": "monthly",
+      "fundName": {
+        "id": 1,
+        "name": "funds one"
+      },
+      "owner": "3",
+      "frequency": {
+        "id": 1,
+        "name": "frequency one"
+      },
       "comment": "",
       "status": "Pending"
     },
     {
-      "owner": "owner two",
       "status": "Pending",
-      "comment": "",
-      "frequency": "test",
-      "fundName": "fund name four",
+      "fundName": {
+        "id": 1,
+        "name": "funds one"
+      },
+      "owner": "2",
+      "frequency": {
+        "id": 1,
+        "name": "frequency one"
+      },
       "id": 29
     },
     {
       "id": 30,
-      "fundName": "fund name four",
-      "owner": "owner two",
-      "frequency": "quaterly",
+      "fundName": {
+        "id": 1,
+        "name": "funds one"
+      },
+      "owner": "4",
+      "frequency": {
+        "id": 1,
+        "name": "frequency one"
+      },
       "comment": "",
       "status": "Pending"
     },
     {
       "id": 31,
-      "fundName": "fund name four",
-      "owner": "owner one",
-      "frequency": "quaterly",
+      "fundName": {
+        "id": 1,
+        "name": "funds one"
+      },
+      "owner": "2",
+      "frequency": {
+        "id": 1,
+        "name": "frequency one"
+      },
       "comment": "",
       "status": "Pending"
     },
     {
       "id": 32,
-      "fundName": "fund name four",
-      "owner": "owner one",
-      "frequency": "quaterly",
+      "fundName": {
+        "id": 1,
+        "name": "funds one"
+      },
+      "owner": "3",
+      "frequency": {
+        "id": 1,
+        "name": "frequency one"
+      },
       "comment": "",
       "status": "Pending"
     },
     {
       "id": 33,
-      "fundName": "fund name three",
-      "owner": "owner one",
-      "frequency": "quaterly",
+      "fundName": {
+        "id": 1,
+        "name": "funds one"
+      },
+      "owner": "5",
+      "frequency": {
+        "id": 1,
+        "name": "frequency one"
+      },
       "comment": "",
       "status": "Pending"
     },
     {
       "id": 34,
-      "fundName": "fund name three",
-      "owner": "owner one",
-      "frequency": "quaterly",
+      "fundName": {
+        "id": 1,
+        "name": "funds one"
+      },
+      "owner": "4",
+      "frequency": {
+        "id": 1,
+        "name": "frequency one"
+      },
       "comment": "",
       "status": "Pending"
     },
     {
       "id": 35,
-      "fundName": "fund name three",
-      "owner": "owner one",
-      "frequency": "quaterly",
+      "fundName": {
+        "id": 1,
+        "name": "funds one"
+      },
+      "owner": "2",
+      "frequency": {
+        "id": 1,
+        "name": "frequency one"
+      },
       "comment": "",
       "status": "Pending"
     },
     {
       "id": 36,
-      "fundName": "fund name two",
-      "owner": "owner one",
-      "frequency": "quaterly",
+      "fundName": {
+        "id": 1,
+        "name": "funds one"
+      },
+      "owner": "4",
+      "frequency": {
+        "id": 1,
+        "name": "frequency one"
+      },
       "comment": "",
       "status": "Pending"
     },
     {
       "id": 38,
-      "fundName": "fund name two",
-      "owner": "owner one",
-      "frequency": "quaterly",
+      "fundName": {
+        "id": 1,
+        "name": "funds one"
+      },
+      "owner": "4",
+      "frequency": {
+        "id": 1,
+        "name": "frequency one"
+      },
       "comment": "",
       "status": "Pending"
     },
     {
       "id": 39,
-      "fundName": "fund name two",
-      "owner": "owner one",
-      "frequency": "quaterly",
+      "fundName": {
+        "id": 1,
+        "name": "funds one"
+      },
+      "owner": "5",
+      "frequency": {
+        "id": 1,
+        "name": "frequency one"
+      },
       "comment": "",
       "status": "Pending"
     },
     {
-      "owner": "owner one",
-      "frequency": "half yearly",
-      "fundName": "fund name one",
+      "fundName": {
+        "id": 1,
+        "name": "funds one"
+      },
+      "owner": "3",
+      "frequency": {
+        "id": 1,
+        "name": "frequency one"
+      },
       "comment": "T",
       "status": "Completed",
       "id": 40
     },
     {
-      "owner": "owner two",
-      "frequency": "monthly",
-      "fundName": "fund name three",
+      "fundName": {
+        "id": 1,
+        "name": "funds one"
+      },
+      "owner": "4",
+      "frequency": {
+        "id": 1,
+        "name": "frequency one"
+      },
       "comment": "TE",
       "status": "Completed",
       "id": 41
     },
     {
-      "owner": "owner one",
-      "frequency": "frequency one",
-      "fundName": "funds one",
+      "fundName": {
+        "id": 1,
+        "name": "funds one"
+      },
+      "owner": "2",
+      "frequency": {
+        "id": 1,
+        "name": "frequency one"
+      },
       "comment": "test",
       "status": "Completed",
       "id": 42
@@ -185,35 +290,45 @@
   ],
   "funds": [
     {
+      "id": 1,
       "name": "funds one"
     },
     {
+      "id": 2,
       "name": "funds two"
     },
     {
+      "id": 3,
       "name": "funds three"
     },
     {
+      "id": 4,
       "name": "funds four"
     },
     {
+      "id": 5,
       "name": "funds five"
     }
   ],
   "frequency": [
     {
+      "id": 1,
       "name": "frequency one"
     },
     {
+      "id": 2,
       "name": "frequency two"
     },
     {
+      "id": 3,
       "name": "frequency three"
     },
     {
+      "id": 4,
       "name": "frequency four"
     },
     {
+      "id": 5,
       "name": "frequency five"
     }
   ]

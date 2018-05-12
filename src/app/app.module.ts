@@ -40,7 +40,9 @@ import { MidComponent } from './mid/mid.component';
     ReactiveFormsModule,
     ToastrModule.forRoot()
   ],
-  providers: [TaskService],
+  providers: [
+    TaskService
+  ],
   bootstrap: [AppComponent]
 })
 
