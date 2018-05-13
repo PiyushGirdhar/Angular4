@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions  } from '@angular/http';
 import { OnInit } from '@angular/core';
+import { endpoints } from './../shared/constants/endpoints';
 
 @Injectable()
 export class TaskService implements OnInit {
 
   options: any;
-  baseUrl: string = "http://localhost:3000/";
+  baseUrl: string = endpoints.server_url;
 
   constructor(
     private http: Http
@@ -23,47 +24,47 @@ export class TaskService implements OnInit {
 
   // Get Tasks
   getTasks() {
-    return this.http.get(`${this.baseUrl}tasks`, this.options);
+    return this.http.get(`${this.baseUrl}` + endpoints.task, this.options);
   }
 
   // Create Task
   createTask(data) {
-    return this.http.post(`${this.baseUrl}tasks`, data, this.options);
+    return this.http.post(`${this.baseUrl}` + endpoints.task, data, this.options);
   }
 
   // Delete Task
   deleteTask(id) {
-    return this.http.delete(`${this.baseUrl}tasks/` + id, this.options);
+    return this.http.delete(`${this.baseUrl}` + endpoints.task + '/' + id, this.options);
   }
 
   // Update Task
   updateTaskSubmit(data) {
-    return this.http.patch(`${this.baseUrl}tasks/` + data.id, data, this.options);
+    return this.http.patch(`${this.baseUrl}` + endpoints.task + '/' + data.id, data, this.options);
   }
 
   // Get TaskById
   getTaskById(id) {
-    return this.http.get(`${this.baseUrl}tasks/` + id, this.options);
+    return this.http.get(`${this.baseUrl}` + endpoints.task + '/' + id, this.options);
   }
 
   // Get Owners
   getOwners() {
-    return this.http.get(`${this.baseUrl}owners`, this.options);
+    return this.http.get(`${this.baseUrl}` + endpoints.owner, this.options);
   }
 
   // Update Owners
   updateTask(data) {
-    return this.http.patch(`${this.baseUrl}tasks/` + data.id, data, this.options);
+    return this.http.patch(`${this.baseUrl}` + endpoints.task + '/' + data.id, data, this.options);
   }
 
   // Get Frequency
   getFrequencies() {
-    return this.http.get(`${this.baseUrl}frequency`, this.options);
+    return this.http.get(`${this.baseUrl}` + endpoints.frequency, this.options);
   }
 
   // Get Fund
   getFundNames() {
-    return this.http.get(`${this.baseUrl}funds`, this.options);
+    return this.http.get(`${this.baseUrl}` + endpoints.fund, this.options);
   }
 
   ngOnInit() {

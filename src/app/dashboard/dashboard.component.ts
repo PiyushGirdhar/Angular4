@@ -1,12 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TaskService } from './../service/task.service';
-import { Frequency } from './../shared/frequency-model';
-import { Task } from './../shared/task-model';
-import { Owner } from '../shared/owner-model';
-import { Fund } from '../shared/fund-model';
+import { Frequency } from './../shared/models/frequency-model';
+import { Task } from './../shared/models/task-model';
+import { Owner } from '../shared/models/owner-model';
+import { Fund } from '../shared/models/fund-model';
 import { ToastrService } from 'ngx-toastr';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Utils } from './../shared/utils'
+import { statuses } from './../shared/constants/status';
+import { formFields } from '../shared/constants/form-fields';
+import { messages } from './../shared/constants/messages';
+import { endpoints } from '../shared/constants/endpoints';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +24,7 @@ export class DashboardComponent implements OnInit {
 
   // Initialising variables
   p: number = 1;
+  perPageItem: number = endpoints.perPageItem;
   tasks: Array<Task>;
   owners: Array<Owner>;
   frequency: Array<Frequency>;
@@ -35,6 +40,10 @@ export class DashboardComponent implements OnInit {
   hideGrid: boolean = false;
   sortToggle: boolean = false;
   setFrequencyName: string;
+  setOwnerName: string;
+  setFundName: string;
+  totalNumberOfTasks: number;
+  editIndex: number;
   @Input() searchText: string;
 
   constructor(
@@ -56,30 +65,39 @@ export class DashboardComponent implements OnInit {
 
   // Disable new task form
   disableFormewTaskForm() {
-    this.taskForm.get('owner').disable(); 
-    this.taskForm.get('frequency').disable();
-    this.taskForm.get('fundName').disable(); 
+    this.taskForm.get(formFields.owner).disable(); 
+    this.taskForm.get(formFields.frequency).disable();
+    this.taskForm.get(formFields.fundName).disable(); 
   }
 
   // Get commentary/task
   getTasks() {
     this.taskService.getTasks().subscribe(data => {
       this.tasks = data.json();
+      this.totalNumberOfTasks = data.json().length;
     });
   }
 
   // Delete Task
-  deleteTask(id) {
-    if(confirm('Are you sure, you want to delete this record?')) {
+  deleteTask(id, index) {
+    if(confirm(messages.deleteConfirm)) {
       this.taskService.deleteTask(id).subscribe(data => {
-        this.toastr.success('Record was successfully deleted!');
-        this.getTasks();
+        this.toastr.success(messages.sucess);
+        this.sortToggle = true;
+        this.tasks.splice((endpoints.perPageItem * (this.p - 1)) + index, 1);
       });
     }
   }
 
+  // Updating form values
   updateFrequencyName(name) {
     this.setFrequencyName = name.text;
+  }
+  updateOwnerName(name) {
+    this.setOwnerName = name.text;
+  }
+  updateFundName(name) {
+    this.setFundName = name.text;
   }
 
   // Update Task
@@ -87,33 +105,42 @@ export class DashboardComponent implements OnInit {
     if(this.showComment) {
         this.constData = {
           id: editData.id,
-          owner: editData.owner,
+          owner: {
+            id: editData.owner.id,
+            name: this.setOwnerName ? this.setOwnerName : editData.owner.name,
+          },
           frequency: {
             id: editData.frequency.id,
-            name: this.setFrequencyName,
+            name: this.setFrequencyName ? this.setFrequencyName : editData.frequency.name,
           },
-          fundName: editData.fundName,
-          comment: editData.comment,
-          status: 'Completed'
+          fundName: {
+            id: editData.fundName.id,
+            name: this.setFundName ? this.setFundName : editData.fundName.name,
+          },
+          comment: editData.comment.trim(),
+          status: statuses.completed
         };
     } else {
       this.constData = {
         id: editData.id,
-        owner: editData.owner,
+        owner: {
+          id: editData.owner.id,
+          name: this.setOwnerName ? this.setOwnerName : editData.owner.name,
+        },
         frequency: {
           id: editData.frequency.id,
-          name: this.setFrequencyName,
+          name: this.setFrequencyName ? this.setFrequencyName : editData.frequency.name,
         },
-        fundName: editData.fundName
+        fundName: {
+          id: editData.fundName.id,
+          name: this.setFundName ? this.setFundName : editData.fundName.name,
+        }
       };
     }
-    console.log(this.constData);
     this.taskService.updateTaskSubmit(this.constData).subscribe(data => {
-      this.toastr.success('Records were successfully updated!');
+      this.toastr.success(messages.sucess);
       setTimeout(() => {
-        this.showEdit = false;
-        this.hideGrid = false;
-        this.showComment = false;
+        this.showEdit = this.hideGrid = this.showComment = false;
         this.getTasks();
       }, 500);
     });
@@ -123,23 +150,26 @@ export class DashboardComponent implements OnInit {
   onTaskSubmit() {
     this.disableFormewTaskForm(); 
     const task = {
-      owner: this.taskForm.get('owner').value,
+      owner: {
+        id: this.taskForm.get(formFields.owner).value,
+        name: this.setOwnerName
+      },
       frequency: {
-        id: this.taskForm.get('frequency').value,
+        id: this.taskForm.get(formFields.frequency).value,
         name: this.setFrequencyName
       },
-      fundName: this.taskForm.get('fundName').value,
+      fundName: {
+        id: this.taskForm.get(formFields.fundName).value,
+        name: this.setFundName
+      },
       comment: "",
-      status: "Pending"
+      status: statuses.pending
     };
-    console.log(task);
     this.taskService.createTask(task).subscribe(data => {
-      this.toastr.success('Task was successfully created!');
+      this.toastr.success(messages.sucess);
       setTimeout(() => {
-        this.showCreate = false;
-        this.showEdit = false;
-        this.hideGrid = false;
-        this.getTasks();
+        this.showCreate = this.showEdit = this.hideGrid = false;
+        this.tasks.splice(this.totalNumberOfTasks, 0, data.json());
       }, 500);
     });
   }
@@ -154,8 +184,15 @@ export class DashboardComponent implements OnInit {
 
   // Update Owner
   updateTask(event, task) {
-    this.taskService.updateTask(task).subscribe(data => {
-      this.toastr.success('Record was successfully updated!');
+    const updateOwner = {
+      id: task.id,
+      owner: {
+        id: event.id,
+        name: event.text
+      }
+    };
+    this.taskService.updateTask(updateOwner).subscribe(data => {
+      this.toastr.success(messages.sucess);
     });
   }
 
@@ -176,11 +213,11 @@ export class DashboardComponent implements OnInit {
   }
 
   // Open Edit section and get the data
-  openEdit(data) {
+  openEdit(data, index) {
       this.processing = this.showComment ? false : true;
-      this.hideGrid = true;
-      this.showEdit = true;
+      this.hideGrid = this.showEdit = true;
       this.editData = data;
+      this.editIndex = index;
       this.getFrequencies();
       this.getFundNames();
   }
@@ -188,8 +225,7 @@ export class DashboardComponent implements OnInit {
   // Open Create section, get the data and create the form
   openCreate() {
     this.showEdit = false;
-    this.hideGrid = true;
-    this.showCreate = true;
+    this.hideGrid = this.showCreate = true;
     this.getFrequencies();
     this.getFundNames();  
     this.createNewTaskForm();
@@ -197,12 +233,10 @@ export class DashboardComponent implements OnInit {
 
   // Go Back to grid
   goBack() {
-    this.toastr.error('Record was not updated!');
+    this.toastr.error(messages.failure);
     setTimeout(() => {
-      this.showEdit = false;
-      this.showCreate = false;
-      this.showComment = false;
-      this.hideGrid = false;
+      this.showEdit = this.showCreate = this.showComment = this.hideGrid = false;
+      this.setFrequencyName = this.setFundName = this.setOwnerName = "";
     }, 500);
   }
 
@@ -214,15 +248,16 @@ export class DashboardComponent implements OnInit {
 
   // Check Comment's processing status
   updatePending(comment) {
-    this.processing = comment === "" ? false : true;
+    this.processing = comment !== "" && comment.trim().length >= 1 ? true : false;
   }
 
   // Toggle data
-  toggleData(): void {
+  toggleData() {
     this.sortToggle = !this.sortToggle;
     this.tasks = this.util.sortList(this.tasks, 'id', this.sortToggle);
   }
 
+  // OnInit
   ngOnInit() {
     this.getTasks();
     this.getOwners();

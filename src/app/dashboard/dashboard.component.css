@@ -58,6 +58,12 @@
     border-radius: 0;
     color: #fff;
 }
+.add-space {
+    margin-top: 15px;
+}
+.details-screen form label {
+    margin: 15px 0;
+}
 .fa-sort-desc, .fa-sort-asc {
     position: relative;
 }
