@@ -139,10 +139,8 @@ export class DashboardComponent implements OnInit {
     }
     this.taskService.updateTaskSubmit(this.constData).subscribe(data => {
       this.toastr.success(messages.sucess);
-      setTimeout(() => {
-        this.showEdit = this.hideGrid = this.showComment = false;
-        this.getTasks();
-      }, 500);
+      this.showEdit = this.hideGrid = this.showComment = false;
+      this.getTasks();
     });
   }
 
@@ -167,10 +165,8 @@ export class DashboardComponent implements OnInit {
     };
     this.taskService.createTask(task).subscribe(data => {
       this.toastr.success(messages.sucess);
-      setTimeout(() => {
-        this.showCreate = this.showEdit = this.hideGrid = false;
-        this.tasks.splice(this.totalNumberOfTasks, 0, data.json());
-      }, 500);
+      this.showCreate = this.showEdit = this.hideGrid = false;
+      this.tasks.splice(this.totalNumberOfTasks, 0, data.json());
     });
   }
 
@@ -234,10 +230,9 @@ export class DashboardComponent implements OnInit {
   // Go Back to grid
   goBack() {
     this.toastr.error(messages.failure);
-    setTimeout(() => {
-      this.showEdit = this.showCreate = this.showComment = this.hideGrid = false;
-      this.setFrequencyName = this.setFundName = this.setOwnerName = "";
-    }, 500);
+    this.showEdit = this.showCreate = this.showComment = this.hideGrid = false;
+    this.setFrequencyName = this.setFundName = this.setOwnerName =  "";
+    this.getTasks();
   }
 
   // Check comment processing status
