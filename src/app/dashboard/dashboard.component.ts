@@ -39,6 +39,7 @@ export class DashboardComponent implements OnInit {
   showCreate: boolean = false;
   hideGrid: boolean = false;
   sortToggle: boolean = false;
+  createButton: boolean = true;
   setFrequencyName: string;
   setOwnerName: string;
   setFundName: string;
@@ -167,6 +168,7 @@ export class DashboardComponent implements OnInit {
       this.toastr.success(messages.sucess);
       this.showCreate = this.showEdit = this.hideGrid = false;
       this.tasks.splice(this.totalNumberOfTasks, 0, data.json());
+      this.toggleCreate();
     });
   }
 
@@ -220,7 +222,7 @@ export class DashboardComponent implements OnInit {
 
   // Open Create section, get the data and create the form
   openCreate() {
-    this.showEdit = false;
+    this.showEdit = this.createButton = false;
     this.hideGrid = this.showCreate = true;
     this.getFrequencies();
     this.getFundNames();  
@@ -233,6 +235,7 @@ export class DashboardComponent implements OnInit {
     this.showEdit = this.showCreate = this.showComment = this.hideGrid = false;
     this.setFrequencyName = this.setFundName = this.setOwnerName =  "";
     this.getTasks();
+    this.toggleCreate();
   }
 
   // Check comment processing status
@@ -250,6 +253,11 @@ export class DashboardComponent implements OnInit {
   toggleData() {
     this.sortToggle = !this.sortToggle;
     this.tasks = this.util.sortList(this.tasks, 'id', this.sortToggle);
+  }
+
+  // Toggle create
+  toggleCreate() {
+    this.createButton = !this.createButton;
   }
 
   // OnInit

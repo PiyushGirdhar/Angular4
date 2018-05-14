@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12">
         <p class="text-right">
-          <a (click)="openCreate()" class="btn btn-xs btn-warning">Add Task <i class="fa fa-plus"></i></a>
+          <a *ngIf="createButton" (click)="openCreate()" class="btn btn-xs btn-warning">Add Task <i class="fa fa-plus"></i></a>
         </p>
       </div> <!--.col-md-12-->
     </div> <!--.row-->
