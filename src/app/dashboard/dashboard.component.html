@@ -37,8 +37,8 @@
                       {{task.status}}
                   </a>
                 </td>
-                <td>
-                    <select2 [options]="owners" [settings]="{ setting: value, width: '100%' }"
+                <td style="position: relative;">
+                    <select2 [options]="owners" [settings]="{ setting: value, width: '150px' }"
                     [(ngModel)]="task.owner.id" (onSelect)="updateTask($event,task)"></select2>
                 </td>
                 <td *ngIf="task.comment">

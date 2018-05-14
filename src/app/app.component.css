@@ -68,13 +68,16 @@ p, h1, h2, h3, h4, h5, h6, span, tr, td, th, div {
     }
 }
 @media (max-width: 767px) { 
-    .navbar-left {
-        text-align: right;
-    }
-    .navbar-right {
+    .navbar-left, .navbar-right {
         text-align: center;
     }
     .navbar-right li {
         display: inline-block;
+    }
+    .navbar-brand {
+        float: none;
+    }
+    .navbar-brand img {
+        margin: 0 auto;
     }
 }

@@ -166,9 +166,8 @@ export class DashboardComponent implements OnInit {
     };
     this.taskService.createTask(task).subscribe(data => {
       this.toastr.success(messages.sucess);
-      this.showCreate = this.showEdit = this.hideGrid = false;
+      this.showCreate = this.showEdit = this.hideGrid = this.createButton = false;
       this.tasks.splice(this.totalNumberOfTasks, 0, data.json());
-      this.toggleCreate();
     });
   }
 
@@ -234,8 +233,8 @@ export class DashboardComponent implements OnInit {
     this.toastr.error(messages.failure);
     this.showEdit = this.showCreate = this.showComment = this.hideGrid = false;
     this.setFrequencyName = this.setFundName = this.setOwnerName =  "";
+    this.createButton = true;
     this.getTasks();
-    this.toggleCreate();
   }
 
   // Check comment processing status
@@ -253,11 +252,6 @@ export class DashboardComponent implements OnInit {
   toggleData() {
     this.sortToggle = !this.sortToggle;
     this.tasks = this.util.sortList(this.tasks, 'id', this.sortToggle);
-  }
-
-  // Toggle create
-  toggleCreate() {
-    this.createButton = !this.createButton;
   }
 
   // OnInit
