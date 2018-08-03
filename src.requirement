@@ -1,0 +1,26 @@
+1. Check for jira task content for basic functionalities
+2. Check for validations in add and update task 
+- refer anisha email
+- check for start date < end date
+- check for end date > due date
+3. refresh token - not yet implemented on backend
+4. interceptor headers - done, testing left and proper parameters to be passed
+7. update task - for two types 
+- use common service to share same functions 
+- use common html
+11. Search feature on activity dashboard and show tasks
+12. File Uploads
+13. Cancel popup and confirmation
+- add task
+- update task
+- file upload
+14. Success messages with toastr
+- add task
+- update task
+- file upload
+15. Check for schedule task by - Fiscal Year, Calendar Year : Confusion? - add and update task and also check for task mapping sheet
+
+*** Setup data models
+** Code enhancements - reducing code lines and using observables
+* Writing tests
+
